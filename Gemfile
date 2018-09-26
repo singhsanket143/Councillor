@@ -65,3 +65,4 @@ gem 'activeadmin'
 # Plus integrations with:
 gem 'devise'
 gem 'arctic_admin'
+gem 'rails3-jquery-autocomplete'

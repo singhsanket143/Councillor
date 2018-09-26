@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_26_123517) do
+ActiveRecord::Schema.define(version: 2018_09_26_145122) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -46,6 +46,24 @@ ActiveRecord::Schema.define(version: 2018_09_26_123517) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "enrollment_no"
+    t.integer "year"
+    t.string "group"
+    t.string "remark", default: "Regular"
+    t.string "contact"
+    t.string "cet_roll_no"
+    t.integer "cet_rank"
+    t.string "fathers_name"
+    t.string "mothers_name"
+    t.date "dob"
+    t.string "gender"
+    t.integer "pcode", default: 23
+    t.string "programme", default: "BTECH"
+    t.integer "institute_code", default: 964
+    t.text "address"
+    t.string "fathers_profession"
+    t.string "category"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
