@@ -11,6 +11,7 @@
 $primary-color: #2dbb43;
 @import "active_admin/mixins";
 @import "arctic_admin/base";
+//@import "active_admin/searchable_select";
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
