@@ -1,0 +1,74 @@
+<%= stylesheet_link_tag    'login_signup', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'login_signup', 'data-turbolinks-track': 'reload' %>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+
+
+
+
+<div class="pen-title">
+  <h1>Student Login</h1>
+</div>
+<!-- Form Module-->
+<div class="module form-module">
+  <div class="toggle"><i class="fa fa-times fa-pencil"></i>
+    <div class="tooltip">Click Me</div>
+  </div>
+  <div class="form">
+    <h2>Login to your account</h2>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= f.text_field :email %>
+      <%= f.password_field :password %>
+      <% if devise_mapping.rememberable? -%>
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      <% end -%>
+      <div class="actions">
+        <%= f.button "Log in" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="form">
+    <h2>Create an account</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+        <%= f.email_field :email, placeholder: 'Email' %>
+
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %>
+        <%= f.password_field :password, placeholder: 'Password' %>
+
+        <%= f.password_field :password_confirmation, placeholder: 'Confirm Password' %>
+
+      <div class="actions">
+        <%= f.button "Sign up" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="cta"><a href="/users/password/new">Forgot your password?</a></div>
+
+</div>
+
+
+
+
+<script>
+    // Toggle Function
+    $('.toggle').click(function(){
+        // Switches the Icon
+        $(this).children('i').toggleClass('fa-pencil');
+        // Switches the forms
+        $('.form').animate({
+            height: "toggle",
+            'padding-top': 'toggle',
+            'padding-bottom': 'toggle',
+            opacity: "toggle"
+        }, "slow");
+    });
+</script>
