@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_26_145122) do
+ActiveRecord::Schema.define(version: 2018_09_26_194011) do
+
+  create_table "academic_years", force: :cascade do |t|
+    t.integer "start_year"
+    t.integer "end_year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -34,8 +41,29 @@ ActiveRecord::Schema.define(version: 2018_09_26_145122) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "batches", force: :cascade do |t|
+    t.string "batch_code"
+    t.integer "academic_year_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "semester_id"
+    t.integer "admin_user_id"
+    t.index ["academic_year_id"], name: "index_batches_on_academic_year_id"
+    t.index ["admin_user_id"], name: "index_batches_on_admin_user_id"
+    t.index ["semester_id"], name: "index_batches_on_semester_id"
+  end
+
+  create_table "semesters", force: :cascade do |t|
+    t.integer "sem"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "academic_year_id"
+    t.index ["academic_year_id"], name: "index_semesters_on_academic_year_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -64,6 +92,10 @@ ActiveRecord::Schema.define(version: 2018_09_26_145122) do
     t.text "address"
     t.string "fathers_profession"
     t.string "category"
+    t.integer "academic_year_id"
+    t.integer "batch_id"
+    t.index ["academic_year_id"], name: "index_users_on_academic_year_id"
+    t.index ["batch_id"], name: "index_users_on_batch_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  batch_code: MyString
+  academicyear: one
+
+two:
+  batch_code: MyString
+  academicyear: two
