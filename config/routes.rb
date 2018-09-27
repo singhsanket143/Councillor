@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get '/course_outcome', to: 'charts#course_outcome_search'
   get '/course' => 'charts#course_search'
-
+  get '/program_outcome' => 'charts#program_outcome_search'
+  get '/program_source_outcome' => 'charts#program_source_outcome_search'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

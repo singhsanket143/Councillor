@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_27_070028) do
+ActiveRecord::Schema.define(version: 2018_09_27_092620) do
 
   create_table "academic_years", force: :cascade do |t|
     t.integer "start_year"
@@ -97,6 +97,56 @@ ActiveRecord::Schema.define(version: 2018_09_27_070028) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["semester_id"], name: "index_courses_on_semester_id"
+  end
+
+  create_table "courses_program_outcomes", id: false, force: :cascade do |t|
+    t.integer "course_id", null: false
+    t.integer "program_outcome_id", null: false
+    t.index ["course_id", "program_outcome_id"], name: "course_po"
+    t.index ["program_outcome_id", "course_id"], name: "po_course"
+  end
+
+  create_table "courses_program_source_outcomes", id: false, force: :cascade do |t|
+    t.integer "course_id", null: false
+    t.integer "program_source_outcome_id", null: false
+    t.index ["course_id", "program_source_outcome_id"], name: "course_pso"
+    t.index ["program_source_outcome_id", "course_id"], name: "pso_course"
+  end
+
+  create_table "program_outcome_values", force: :cascade do |t|
+    t.float "value"
+    t.integer "academic_year_id"
+    t.integer "program_outcome_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "course_id"
+    t.index ["academic_year_id"], name: "index_program_outcome_values_on_academic_year_id"
+    t.index ["course_id"], name: "index_program_outcome_values_on_course_id"
+    t.index ["program_outcome_id"], name: "index_program_outcome_values_on_program_outcome_id"
+  end
+
+  create_table "program_outcomes", force: :cascade do |t|
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "program_source_outcome_values", force: :cascade do |t|
+    t.float "value"
+    t.integer "academic_year_id"
+    t.integer "program_source_outcome_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "course_id"
+    t.index ["academic_year_id"], name: "index_program_source_outcome_values_on_academic_year_id"
+    t.index ["course_id"], name: "index_program_source_outcome_values_on_course_id"
+    t.index ["program_source_outcome_id"], name: "pso"
+  end
+
+  create_table "program_source_outcomes", force: :cascade do |t|
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "semesters", force: :cascade do |t|

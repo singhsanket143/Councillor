@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  value: 1.5
+  academic_year: one
+  program_outcome: one
+
+two:
+  value: 1.5
+  academic_year: two
+  program_outcome: two
