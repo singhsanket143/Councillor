@@ -10,13 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_26_195343) do
+ActiveRecord::Schema.define(version: 2018_09_27_064520) do
 
   create_table "academic_years", force: :cascade do |t|
     t.integer "start_year"
     t.integer "end_year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "academic_years_course_outcomes", id: false, force: :cascade do |t|
+    t.integer "academic_year_id", null: false
+    t.integer "course_outcome_id", null: false
+    t.index ["academic_year_id", "course_outcome_id"], name: "acad_course_outcome"
+    t.index ["course_outcome_id", "academic_year_id"], name: "course_outcome_acad"
   end
 
   create_table "active_admin_comments", force: :cascade do |t|
