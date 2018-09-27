@@ -1,0 +1,51 @@
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<div class="row no-gutters wow slideInUp" data-wow-duration="1s">
+  <div class="col-md-12 home-form">
+    <%= form_tag(course_path, method: "get", class: "form-inline", remote: true) do %>
+      <%= select_tag "course", options_from_collection_for_select(Course.all, "id", "title"), prompt: "Course", class: 'course_selected' %>
+      <%= select_tag "course_outcome", options_from_collection_for_select(CourseOutcome.all, "id", "code"), prompt: "Course Outcome", class: 'course_outcome_selected' %>
+      <button id="target">Submit</button>
+    <% end %>
+  </div>
+</div>
+
+
+<div id="curve_chart" style="width: 900px; height: 500px"></div>
+<script type="text/javascript" charset="utf-8">
+  $('#target').click(function () {
+      console.log("Clicked");
+      var fetched_data = [];
+      var course = $(".course_selected option:selected").val();
+      var course_outcome = $(".course_outcome_selected option:selected").val();
+      console.log(course, course_outcome);
+      $.ajax({
+          url: "/course",
+          method: 'GET',
+          data: { course: course, course_outcome : course_outcome},
+          contentType: 'application/json; charset=utf-8',
+          success: function (response) {
+              console.log(response.data);
+              fetched_data = response.data;
+              $( "#curve_chart" ).empty();
+              google.charts.load('current', {'packages':['corechart']});
+              google.charts.setOnLoadCallback(drawChart);
+              function drawChart() {
+                  var data = google.visualization.arrayToDataTable(fetched_data);
+
+                  var options = {
+                      title: 'CO Attainment',
+                      curveType: 'function',
+                      legend: { position: 'bottom' }
+                  };
+
+                  var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+                  chart.draw(data, options);
+              }
+
+          }
+      });
+
+  });
+</script>

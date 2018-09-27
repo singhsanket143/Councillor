@@ -1,4 +1,4 @@
-ActiveAdmin.register CourseOutcome do
+ActiveAdmin.register CourseOutcomeValue do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -12,13 +12,6 @@ ActiveAdmin.register CourseOutcome do
 #   permitted
 # end
 
-  # form do |f|
-  #   f.has_many :courses do |s|
-  #     s.input :courses, :as => :select, :multiple => true, :collection => Course.all.map { |u| [u.title, u.code] }
-  #   end
-  # end
-
-  
   controller do
     def permitted_params
       params.permit!

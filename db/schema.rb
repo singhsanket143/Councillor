@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_27_064520) do
+ActiveRecord::Schema.define(version: 2018_09_27_070028) do
 
   create_table "academic_years", force: :cascade do |t|
     t.integer "start_year"
@@ -63,6 +63,18 @@ ActiveRecord::Schema.define(version: 2018_09_27_064520) do
     t.index ["academic_year_id"], name: "index_batches_on_academic_year_id"
     t.index ["admin_user_id"], name: "index_batches_on_admin_user_id"
     t.index ["semester_id"], name: "index_batches_on_semester_id"
+  end
+
+  create_table "course_outcome_values", force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "course_outcome_id"
+    t.float "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "academic_year_id"
+    t.index ["academic_year_id"], name: "index_course_outcome_values_on_academic_year_id"
+    t.index ["course_id"], name: "index_course_outcome_values_on_course_id"
+    t.index ["course_outcome_id"], name: "index_course_outcome_values_on_course_outcome_id"
   end
 
   create_table "course_outcomes", force: :cascade do |t|

@@ -3,6 +3,7 @@ class AcademicYear < ApplicationRecord
   has_many :users
   has_many :semesters
   has_and_belongs_to_many :course_outcomes
+  has_many :course_outcome_values
   before_save :save_course_outcomes
   def to_s
     self.start_year.to_s + '-' + self.end_year.to_s

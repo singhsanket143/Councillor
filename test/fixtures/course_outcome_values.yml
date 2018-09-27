@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course: 
+  course_outcome: 
+  value: 1.5
+
+two:
+  course: 
+  course_outcome: 
+  value: 1.5

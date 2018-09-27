@@ -10,6 +10,15 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
+    columns do
+      column do
+        panel "Analytics" do
+          render :partial => 'charts/charts'
+        end
+      end
+    end
+
+
     # Here is an example of a simple dashboard with columns and panels.
     #
     # columns do

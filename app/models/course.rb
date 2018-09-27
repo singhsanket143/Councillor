@@ -2,7 +2,7 @@ class Course < ApplicationRecord
   belongs_to :semester
   has_and_belongs_to_many :course_outcomes
   accepts_nested_attributes_for :course_outcomes
-
+  has_many :course_outcome_values
   before_save :save_course_outcomes
 
   def save_course_outcomes
